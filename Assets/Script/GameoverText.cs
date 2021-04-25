@@ -6,10 +6,15 @@ public class GameoverText : Template
 {
     public Sprite sprite;
     private Vector2 oldDes = Vector2.zero;
-    public override void Init()
+    public RuntimeAnimatorController blood = null;
+    public void Start()
+    {
+        if (blood) Init(0);   
+    }
+    public override void Init(int damage)
     {
         foreach (Blood blood in FindObjectsOfType<Blood>()) Destroy(blood.gameObject);
-        CameraMovement.instance.Shake();
+        if(!blood) CameraMovement.instance.Shake();
         GetComponent<SpriteRenderer>().sprite = sprite;
         StartCoroutine(run());
     }
@@ -28,9 +33,9 @@ public class GameoverText : Template
                 Vector2 vec = origin + new Vector2(x / 16f, +y / 16f);
                 if (!NotNear(vec, 0.1f)) continue;
                 GameObject obj = Instantiate(objectivePrefab, vec, Quaternion.identity, transform);
-                if(Vector2.Distance(oldDes,vec) > 1)
+                if (Vector2.Distance(oldDes,vec) > 1)
                 {
-                    obj.GetComponent<Animator>().runtimeAnimatorController = Drawable.instance.bloodAnimator;
+                    obj.GetComponent<Animator>().runtimeAnimatorController = blood ? blood : Drawable.instance.bloodAnimator;
                     oldDes = vec;
                 }
             }

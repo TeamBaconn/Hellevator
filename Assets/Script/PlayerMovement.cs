@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private float interactDelay = 1f;
 
     private Animator anim;
+
+    public AudioSource walk;
+    public AudioSource generator;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -25,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("Back", currentStep == stepOffset);
         interactDelay -= Time.deltaTime;
-        if(currentStep == stepOffset && Input.GetKeyDown(KeyCode.E) && interactDelay <= 0)
+        if(currentStep == stepOffset && Input.GetKeyDown(KeyCode.Space) && interactDelay <= 0)
         {
             anim.SetTrigger("trigger");
             interactDelay = 1f;
@@ -38,11 +41,13 @@ public class PlayerMovement : MonoBehaviour
             transform.position += new Vector3(horizontal * stepSize, 0);
             transform.localScale = new Vector3(horizontal,1,1);
             currentStep += (int)horizontal;
+            walk.Play();
         }
     }
 
     public void Shake()
     {
+        generator.Play();
         CameraMovement.instance.Shake();
         GameCore.instance.addEnergy();
     }

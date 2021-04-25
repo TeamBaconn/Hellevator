@@ -8,8 +8,11 @@ public class Template : MonoBehaviour
     public GameObject objectivePrefab;
 
     public int last = 6;
-    public virtual void Init()
+    private int damage = 1;
+    public virtual void Init(int k)
     {
+        damage = k;
+        last += damage / 2;
         foreach (Blood blood in FindObjectsOfType<Blood>()) Destroy(blood.gameObject);
         CameraMovement.instance.Shake();
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
@@ -42,7 +45,7 @@ public class Template : MonoBehaviour
         {
             //Remove temmplate
             CameraMovement.instance.Shake();
-            if(transform.childCount == 0) GameCore.instance.castSpell();
+            if(transform.childCount == 0) GameCore.instance.castSpell(damage);
             Destroy(gameObject);
         }
     }

@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
         obj.GetComponent<Rigidbody2D>().AddForce(direction, ForceMode2D.Impulse);
     }
 
-    public virtual void Kill()
+    public virtual void Kill(int damage)
     {
         if (killed) return;
         killed = true;

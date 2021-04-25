@@ -41,6 +41,9 @@ TextureImporter:
   - first:
       213: -2460539500654864033
     second: Template_9
+  - first:
+      213: -375675186370051399
+    second: Template_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -166,9 +169,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 102
+        y: 267
         width: 54
-        height: 51
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 75
-        y: 107
+        y: 267
         width: 47
         height: 44
       alignment: 0
@@ -208,9 +211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 41
-        width: 44
-        height: 30
+        y: 189
+        width: 42
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,11 +232,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 75
-        y: 30
+        y: 190
         width: 50
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,6 +244,153 @@ TextureImporter:
       bones: []
       spriteID: f0f7296d5a864f3c0800000000000000
       internalID: -4326718280517386481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 273
+        width: 156
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d126949792343a470800000000000000
+      internalID: 8404635175011050013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 191
+        width: 33
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 820762d4ce2635460800000000000000
+      internalID: 7229230593905946664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_6
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 193
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135b4fa197990d730800000000000000
+      internalID: 4021883212664190257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_7
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 134
+        width: 80
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb81bbaf6ff40e50800000000000000
+      internalID: 6774820594559060926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_8
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 104
+        width: 40
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1151c4878d5fc3950800000000000000
+      internalID: 6430284678058218769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 71
+        width: 52
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5956a35c586addd0800000000000000
+      internalID: -2460539500654864033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Template_10
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 106
+        width: 47
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b20c7d886559caf0800000000000000
+      internalID: -375675186370051399
       vertices: []
       indices: 
       edges: []

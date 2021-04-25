@@ -27,11 +27,17 @@ public class EnemySpawner : MonoBehaviour
     public GameObject healthBar;
 
     public int health = 20;
+    private int initHealth;
 
     public List<Sprite> hands;
 
+    public AudioSource bossSound;
+
+    public bool boss2go = false;
+
     void Start()
     {
+        initHealth = health;
         nextSpawn = 4 + Random.Range(0, 4f);
         nextSpawnSpike = 8 + Random.Range(0, 4f);
         nextSpawnUpSpike = 8 + Random.Range(0, 4f);
@@ -39,11 +45,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (!enable) return;
+        if (!enable || GameCore.instance.getProgress() <= 0.05) return;
         if (nextSpawn <= 0)
         {
             StartCoroutine(spawnEnemy());
-            nextSpawn = 4 + Random.Range(0, 4f) - 4 * (1 - GameCore.instance.getSpeed()) + 4 * GameCore.instance.getProgress();
+            nextSpawn = 4 + Random.Range(0, 2f) - 4 * (1 - GameCore.instance.getSpeed()) + (GameCore.instance.getProgress() > 0.5f ? 4 : 0);
         }
         if (nextSpawnSpike <= 0)
         {
@@ -63,19 +69,27 @@ public class EnemySpawner : MonoBehaviour
                 stage2 = null;
             }
         }
+        if (GameCore.instance.getProgress() > 0.5)
+        {
+            if (!boss2go)
+            {
+                SpikeMovement move = GameObject.Find("Stage2Boss").GetComponent<SpikeMovement>();
+                move.y = 2;
+                move.max_y = 5;
+                move.destroy = true;
+                boss2go = true;
+            }
+        }
         if (GameCore.instance.getProgress() > 0.66f)
         {
             if (stage3 != null)
             {
-                Instantiate(stage3);
+                Instantiate(stage3).name = "Stage3Boss";
                 stage3 = null;
-                SpikeMovement move = GameObject.Find("Stage2Boss").GetComponent<SpikeMovement>();
-                move.y = 15;
-                move.max_y = 5;
-                move.destroy = true;
                 healthBar.SetActive(true);
                 GameObject.Find("Depth").SetActive(false);
                 StartCoroutine(startHealth());
+                bossSound.Play();
             }
         }
         if (GameCore.instance.getProgress() > 0.70f)
@@ -84,14 +98,32 @@ public class EnemySpawner : MonoBehaviour
             nextSpawnSpike -= Time.deltaTime;
         nextSpawn -= Time.deltaTime;
     }
+
+    public void removeHealth(int v)
+    {
+        if (!healthBar.activeSelf) return;
+        health -= v;
+        GameObject.Find("Health").GetComponent<Image>().fillAmount = (float)health / (float)initHealth;
+        if(health <= 0)
+        {
+            enable = false;
+            GameCore.instance.GameWin();
+            SpikeMovement move = GameObject.Find("Stage3Boss").GetComponent<SpikeMovement>();
+            bossSound.Stop();
+            move.y = 15;
+            move.max_y = 5;
+            move.destroy = true;
+        }
+    }
+
     IEnumerator startHealth()
     {
         Image img = GameObject.Find("Health").GetComponent<Image>();
-        for(float i = 0; i <= 1; i += 0.2f)
+        for(float i = 0; i <= 1; i += 0.25f)
         {
             img.fillAmount = i;
             CameraMovement.instance.Shake();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.8f);
         }
     }
     IEnumerator spawnEnemy()
@@ -113,10 +145,13 @@ public class EnemySpawner : MonoBehaviour
         Vector2 des = transform.position + new Vector3(offset_x * minusx, Random.Range(0, offset_y) * minusy + 2*GameCore.instance.getProgress());
         GameObject sig = Instantiate(warnPrefab, des, Quaternion.identity, transform);
         yield return new WaitForSeconds(3f + GameCore.instance.getProgress() * 6);
-        Vector2 desSig = sig.transform.position;
-        Destroy(sig);
-        GameObject obj = Instantiate(spikePrefab, desSig, Quaternion.identity, transform);
-        obj.transform.localScale = new Vector3(minusx * -1, 1, 1);
+        if (sig != null)
+        {
+            Vector2 desSig = sig.transform.position;
+            Destroy(sig);
+            GameObject obj = Instantiate(spikePrefab, desSig, Quaternion.identity, transform);
+            obj.transform.localScale = new Vector3(minusx * -1, 1, 1);
+        }
     }
     IEnumerator spawnUpSpike()
     {
