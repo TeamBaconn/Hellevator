@@ -2080,9 +2080,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tut:
   - Some quick reminders before you go down there
-  - Once you in hell, there is no way back Exorcist#46
+  - Once you're in hell, there is no way back Exorcist#46
   - We can only gives you spiritual signal through the wall
-  - ...to fight Lucifer and his slaves
+  - ...to fight Lucifer and his demons
   - Use your mouse to draw the spritiual shape
   - 
   - Make sure you cover it all for the spell to work
@@ -2094,8 +2094,8 @@ MonoBehaviour:
   - 
   - Try to stay out the reach of those demons
   - If you will se the X mark on the screen
-  - then power the generator faster to doge...
-  - the incoming spikes.
+  - then power the generator faster to dodge...
+  - ...the incoming spikes.
   - Good luck, God bless you.
   text: {fileID: 1538692334}
   lobby: {fileID: 1876289398}

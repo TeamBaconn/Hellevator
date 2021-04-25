@@ -49,7 +49,6 @@ public class UpSpike : Enemy
                 killed = true;
                 player.GetComponent<SpriteRenderer>().enabled = false;
                 player.transform.position = new Vector2(0, -3.24f);
-                GameCore.instance.GameOver();
                 return;
             }
             transform.position = new Vector2(transform.position.x,
@@ -73,10 +72,11 @@ public class UpSpike : Enemy
             return;
         }
         if (player.GetComponent<BoxCollider2D>().bounds.Intersects(GetComponent<Collider2D>().bounds) &&
-            player.transform.parent == null)
+            player.transform.parent == null && !GameCore.instance.over)
         {
             player.transform.SetParent(transform);
             charge = 0;
+            GameCore.instance.GameOver();
         }
     }
     public override void Kill(int damage)

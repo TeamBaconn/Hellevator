@@ -47,7 +47,6 @@ public class Spike : Enemy
                 killed = true;
                 player.GetComponent<SpriteRenderer>().enabled = false;
                 player.transform.position = new Vector2(0, -3.24f);
-                GameCore.instance.GameOver();
             }
             transform.position = Vector2.Lerp(origin + dir * GetComponent<SpriteRenderer>().sprite.rect.width / 16f * 1.42f, origin - dir * 2, charge);
             return;
@@ -68,8 +67,9 @@ public class Spike : Enemy
             return;
         }
         if (player.GetComponent<BoxCollider2D>().bounds.Intersects(GetComponent<Collider2D>().bounds) &&
-            player.transform.parent == null)
+            player.transform.parent == null && !GameCore.instance.over)
         {
+            GameCore.instance.GameOver();
             player.transform.SetParent(transform);
             GetComponent<SpikeMovement>().enabled = false;
             charge = 0;
